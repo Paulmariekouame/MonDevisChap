@@ -1,0 +1,83 @@
+/* Thème clair par défaut */
+body {
+    background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    transition: background 0.3s ease, color 0.3s ease;
+}
+
+/* Thème sombre */
+body.dark {
+    background: linear-gradient(135deg, #343a40 0%, #495057 100%);
+    color: #ffffff;
+}
+
+body.dark .card {
+    background-color: #495057;
+    color: #ffffff;
+}
+
+body.dark .table {
+    color: #ffffff;
+}
+
+body.dark .table th {
+    background-color: #6c757d;
+}
+
+body.dark .form-control {
+    background-color: #6c757d;
+    color: #ffffff;
+    border-color: #adb5bd;
+}
+
+body.dark .form-control:focus {
+    border-color: #28a745;
+    box-shadow: 0 0 0 0.2rem rgba(40, 167, 69, 0.25);
+}
+
+/* Header avec gradient */
+.bg-gradient-primary {
+    background: linear-gradient(135deg, #28a745 0%, #20c997 100%);
+}
+
+/* Cartes avec transitions */
+.card {
+    border: none;
+    border-radius: 15px;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+}
+
+/* Boutons stylisés */
+.btn {
+    border-radius: 25px;
+    transition: all 0.3s ease;
+}
+
+.btn:hover {
+    transform: scale(1.05);
+}
+
+/* Tableau amélioré */
+.table-hover tbody tr:hover {
+    background-color: #f1f3f4;
+}
+
+body.dark .table-hover tbody tr:hover {
+    background-color: #6c757d;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .container {
+        padding: 1rem;
+    }
+    
+    .card-body {
+        padding: 1.5rem;
+    }
+}
