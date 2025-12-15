@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Devis Chap</title>
+    <!-- Bootstrap 5 CDN -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Bootstrap Icons CDN -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.0/font/bootstrap-icons.css">
+    <!-- Lien vers le CSS personnalisé -->
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <!-- Header accueillant -->
+    <header class="bg-gradient-primary text-white py-4">
+        <div class="container d-flex justify-content-between align-items-center">
+            <h1 class="display-4 fw-bold mb-0">Devis Chap</h1>
+            <button class="btn btn-outline-light" id="themeToggle"><i class="bi bi-moon"></i> Thème</button>
+        </div>
+    </header>
+
+    <div class="container my-5">
+        <!-- Nom du devis -->
+        <div class="card shadow-sm mb-4">
+            <div class="card-body">
+                <h5 class="card-title"><i class="bi bi-file-earmark-text"></i> Nom du devis</h5>
+                <input type="text" class="form-control" id="quoteName" placeholder="Entrez un nom descriptif pour votre devis" required>
+            </div>
+        </div>
+        
+        <!-- Choix du modèle -->
+        <div class="card shadow-sm mb-4">
+            <div class="card-body">
+                <h5 class="card-title"><i class="bi bi-palette"></i> Choisissez un modèle</h5>
+                <select class="form-select" id="modelSelect">
+                    <option value="simple">Modèle Simple (Texte uniquement)</option>
+                    <option value="withLogo">Modèle avec Logo</option>
+                </select>
+            </div>
+        </div>
+        
+        <!-- Uploads pour personnalisation -->
+        <div class="card shadow-sm mb-4">
+            <div class="card-body">
+                <h5 class="card-title"><i class="bi bi-upload"></i> Personnalisez votre devis</h5>
+                <div class="row">
+                    <div class="col-md-4 mb-3">
+                        <label for="logoUpload" class="form-label">Logo (optionnel)</label>
+                        <input type="file" class="form-control" id="logoUpload" accept="image/*">
+                    </div>
+                    <div class="col-md-4 mb-3">
+                        <label for="imageUpload" class="form-label">Image (optionnel)</label>
+                        <input type="file" class="form-control" id="imageUpload" accept="image/*">
+                    </div>
+                    <div class="col-md-4 mb-3">
+                        <label for="signatureUpload" class="form-label">Signature (optionnel)</label>
+                        <input type="file" class="form-control" id="signatureUpload" accept="image/*">
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Informations de l'entreprise et du client -->
+        <div class="row mb-4">
+            <div class="col-md-6">
+                <div class="card shadow-sm h-100">
+                    <div class="card-body">
+                        <h5 class="card-title text-success"><i class="bi bi-building"></i> Informations de l'entreprise</h5>
+                        <div class="mb-3">
+                            <label for="companyName" class="form-label">Nom</label>
+                            <input type="text" class="form-control" id="companyName" placeholder="Nom de l'entreprise">
+                        </div>
+                        <div class="mb-3">
+                            <label for="companyAddress" class="form-label">Adresse</label>
+                            <input type="text" class="form-control" id="companyAddress" placeholder="Adresse complète">
+                        </div>
+                        <div class="mb-3">
+                            <label for="companyPhone" class="form-label">Téléphone</label>
+                            <input type="tel" class="form-control" id="companyPhone" placeholder="Numéro de téléphone">
+                        </div>
+                        <div class="mb-3">
+                            <label for="companyEmail" class="form-label">Email</label>
+                            <input type="email" class="form-control" id="companyEmail" placeholder="Adresse email">
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="col-md-6">
+                <div class="card shadow-sm h-100">
+                    <div class="card-body">
+                        <h5 class="card-title text-primary"><i class="bi bi-person"></i> Informations du client</h5>
+                        <div class="mb-3">
+                            <label for="clientName" class="form-label">Nom</label>
+                            <input type="text" class="form-control" id="clientName" placeholder="Nom du client">
+                        </div>
+                        <div class="mb-3">
+                            <label for="clientAddress" class="form-label">Adresse</label>
+                            <input type="text" class="form-control" id="clientAddress" placeholder="Adresse complète">
+                        </div>
+                        <div class="mb-3">
+                            <label for="clientPhone" class="form-label">Téléphone</label>
+                            <input type="tel" class="form-control" id="clientPhone" placeholder="Numéro de téléphone">
+                        </div>
+                        <div class="mb-3">
+                            <label for="clientEmail" class="form-label">Email</label>
+                            <input type="email" class="form-control" id="clientEmail" placeholder="Adresse email">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Tableau des lignes du devis -->
+        <div class="card shadow-sm mb-4">
+            <div class="card-body">
+                <h5 class="card-title"><i class="bi bi-list-ul"></i> Lignes du devis</h5>
+                <table class="table table-hover" id="quoteTable">
+                    <thead class="table-light">
+                        <tr>
+                            <th>Description</th>
+                            <th>Quantité</th>
+                            <th>Prix unitaire (FCFA)</th>
+                            <th>Total (FCFA)</th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody id="quoteBody">
+                        <!-- Les lignes seront ajoutées dynamiquement -->
+                    </tbody>
+                </table>
+                
+                <!-- Boutons -->
+                <div class="d-flex gap-2">
+                    <button class="btn btn-success" id="addRowBtn"><i class="bi bi-plus-circle"></i> Ajouter une ligne</button>
+                    <button class="btn btn-warning" id="resetBtn"><i class="bi bi-arrow-counterclockwise"></i> Réinitialiser</button>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Section des totaux -->
+        <div class="card shadow-sm mb-4">
+            <div class="card-body">
+                <h5 class="card-title"><i class="bi bi-calculator"></i> Récapitulatif</h5>
+                <div class="row">
+                    <div class="col-md-6 offset-md-6">
+                        <div class="d-flex justify-content-between mb-2">
+                            <strong>Sous-total :</strong>
+                            <span id="subtotal" class="text-muted">0.00 FCFA</span>
+                        </div>
+                        <div class="d-flex justify-content-between mb-2">
+                            <strong>Taxe (TVA 20%) :</strong>
+                            <span id="tax" class="text-muted">0.00 FCFA</span>
+                        </div>
+                        <div class="d-flex justify-content-between mb-2 border-top pt-2">
+                            <strong class="text-primary">TOTAL :</strong>
+                            <span id="total" class="text-primary fw-bold">0.00 FCFA</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Boutons d'actions -->
+        <div class="text-center mb-4">
+            <button class="btn btn-info me-2" id="previewPdfBtn"><i class="bi bi-eye"></i> Aperçu PDF</button>
+            <button class="btn btn-primary me-2" id="generatePdfBtn"><i class="bi bi-file-earmark-pdf"></i> Générer le PDF</button>
+            <button class="btn btn-secondary me-2" id="exportBtn"><i class="bi bi-download"></i> Exporter JSON</button>
+            <input type="file" class="d-none" id="importInput" accept=".json">
+            <button class="btn btn-secondary" id="importBtn"><i class="bi bi-upload"></i> Importer JSON</button>
+        </div>
+    </div>
+    
+    <!-- Footer -->
+    <footer class="bg-dark text-white text-center py-3">
+        <p class="mb-0">Développé par Pixel's Paul</p>
+    </footer>
+    
+    <!-- Toasts pour notifications -->
+    <div class="toast-container position-fixed top-0 end-0 p-3">
+        <div id="toast" class="toast" role="alert" aria-live="assertive" aria-atomic="true">
+            <div class="toast-header">
+                <strong class="me-auto">Notification</strong>
+                <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
+            </div>
+            <div class="toast-body" id="toastMessage"></div>
+        </div>
+    </div>
+    
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <!-- Lien vers le JS personnalisé -->
+    <script src="app.js"></script>
+</body>
+</html>
